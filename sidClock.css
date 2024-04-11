@@ -1,0 +1,79 @@
+.container{
+    background-color: white;
+    min-height: 40vh;
+}
+
+/* Alarm box css */
+.alarm-box{
+    margin: 100px 0px 100px 0px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px black;
+    min-height: 80vh;
+    
+}
+.form-control{
+    width: 6vw;
+    text-align: center;
+}
+.textCentre{
+    text-align: center;
+}
+/* div value set by js(saved alarms) */
+#set-alarm-container div{
+    border-radius: 10px;
+    /* height: 50px; */
+    width: auto;
+    /* margin: 5px; */
+    background-color: rgb(231, 235, 235);
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0px 0px 0px 10px;
+}
+#set-alarm-container div p{
+    font-weight: normal;
+    font-size: 1rem;
+}
+.delete-alarm{
+    margin-left: 70%;
+    margin-top: -14%;
+    
+}
+/* 
+new alarm botton clicked form */
+#formContainer {
+    display: none; 
+    background-color: #f4f4f4;
+    padding: 5px;
+    border-radius: 8px;
+    top: 50%;
+    position: fixed;
+    width: 25%;
+    left: 37.5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.column{
+    display: inline-block;
+    position: relative;
+    padding: 8px;
+}
+.btn1{
+    display: inline-block;
+    margin: 20px 0px 0px 45px;
+    width: 100px;
+    
+}
+/* 
+new alarm button */
+.alarm-box #newAlarm{
+    position: fixed;
+    top: 70%;
+    left: 47%;
+    height: 100px;
+    width: 100px;
+    font-weight: bolder;
+    border: 2px solid black;
+    border-radius: 100px;
+}
+
+
