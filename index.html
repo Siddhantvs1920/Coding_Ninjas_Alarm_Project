@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="sidClock.css">
+<title>Alarm Clock</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="textCentre">Alarm Clock</h1>
+        <div class="row">
+        <div class="col-4">
+
+
+        </div>
+        <div class="col-4 alarm-box">
+        <h3 class="textCentre" id="date"></h3>
+        <h1 class="textCentre" id="currentTime"></h1>
+        <h4>Alarms</h4>
+
+        <!-- Set Alarm Container -->
+        <div id="set-alarm-container">
+
+        </div>
+
+        <!-- expertiment -->
+        <button class="btn btn-success" id="newAlarm" type="submit">
+          <h1>+</h1>
+        </button>
+
+        <!-- <button  class="btn btn-danger" id="new-alarm-set">new alarm</button> -->
+
+
+        <div id="formContainer">
+
+          <!-- Hour section -->
+          <div class="column">
+            <select class="form-control" id="hour">
+              <option value="Hour" selected hidden>Hour</option>
+            </select>
+          </div>
+          <!-- Minute Section -->
+          <div class="column">
+            <select class="form-control" id="minute">
+              <option value="Minute" selected hidden>Minute</option>
+            </select>
+          </div>
+          <!-- AM/PM section -->
+          <div class="column ">
+            <select class="form-control" id="ampm">
+              <option value="AM/PM" selected hidden>AM/PM</option>
+            </select>
+          </div>
+          <button class="btn btn-success btn1 " id="submitButton" type="submit">Ok</button>
+
+          <button class="btn btn-danger btn1" id="CancelButton" type="submit">Cancel</button>
+
+
+
+        </div>
+        <div class="col-4">
+
+        </div>
+        </div>
+      </div>
+      
+
+    <script src="sidClock.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
