@@ -1,3 +1,4 @@
+
 .container{
     background-color: white;
     min-height: 40vh;
@@ -37,7 +38,12 @@
 .delete-alarm{
     margin-left: 70%;
     margin-top: -14%;
-    
+    display: inline;
+
+}
+.update-alarm{
+    margin-left: 70%;
+    margin-top: -5%; 
 }
 /* 
 new alarm botton clicked form */
@@ -76,4 +82,12 @@ new alarm button */
     border-radius: 100px;
 }
 
-
+.delete-alarm {
+    background-image: url('DeleteIcon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-size: contain; */
+    height: 20px;
+    width: 15px;
+    padding-left: 25px;
+}
