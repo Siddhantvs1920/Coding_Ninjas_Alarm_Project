@@ -1,3 +1,4 @@
+
 let date=document.getElementById("date");
 let timeDisplay = document.getElementById("currentTime");
 const hour = document.querySelector('#hour');
@@ -7,7 +8,7 @@ const setAlarmButton = document.querySelector("#submitButton");
 const cancelAlarmButton = document.querySelector("#CancelButton");
 const newAlarmButton = document.querySelector("#newAlarm");
 
-const ringTone = new Audio('file:///C:/FrontEndSkillTest/AlarmClock/Iktara.mp3');
+const ringTone = new Audio('Iktara.mp3');
 // Extract the song name from the path
 const pathArray = ringTone.src.split('/');
 const fileName = pathArray[pathArray.length - 1];
@@ -17,6 +18,7 @@ const fileName = pathArray[pathArray.length - 1];
 //new alarm button triggered
 newAlarmButton.addEventListener('click', () => {
   formContainer.style.display = 'block';
+  setAlarmButton.textContent='Ok';
   newAlarmButton.style.display='none';
 });
 
@@ -28,8 +30,12 @@ function refreshTime() {
     minute: "numeric",
     second: "numeric",
     hour12: true,
-    });
+    });    
     const currentDate = new Date();
+    if(currentDate.getSeconds()==59){
+        playSound();
+    }
+
     const localDateString = currentDate.toLocaleDateString();
 
     timeDisplay.innerHTML = time;
@@ -69,7 +75,8 @@ const alarms = JSON.parse(localStorage.getItem('alarms')) || [];
 
 //set alarm button click
 
-setAlarmButton.addEventListener('click', function() {
+setAlarmButton.addEventListener('click',function () {
+   // console.log(setAlarmButton.textContent);
     const selectedHour = document.getElementById('hour').value;
     const selectedMinute = document.getElementById('minute').value;
     const selectedAmPm = document.getElementById('ampm').value;
@@ -97,6 +104,7 @@ setAlarmButton.addEventListener('click', function() {
    newAlarmButton.style.display='block';
    alert('Alarm set sucessfully')
 
+
     
 });
 
@@ -113,34 +121,40 @@ cancelAlarmButton.addEventListener('click', () => {
 });
 
 
-// Function to display all alarms
 function displayAlarms() {
-  const alarmsContainer = document.getElementById('set-alarm-container');
+    const alarmsContainer = document.getElementById('set-alarm-container');
 
-  // Clear the container before displaying alarms
-  alarmsContainer.innerHTML = '';
+    // Clear the container before displaying alarms
+    alarmsContainer.innerHTML = '';
 
-  // Display each alarm in the container
-  alarms.forEach((alarm, index) => {
-      const alarmDiv = document.createElement('div');
-      alarmDiv.innerHTML = `
-              <div class="time">${alarm.hour}:${alarm.minute} ${alarm.ampm}
-              <button class="btn delete-alarm" data-id=${index}>❌ Delete</button></div>
-              <p>Music :${fileName} </p>
-              `;
-      alarmsContainer.appendChild(alarmDiv);
-      const deleteButton = document.querySelector(".delete-alarm");
-      //delete alarm button triggered
-  deleteButton.addEventListener("click", () => deleteAlarm(index));
-  
+    // Display each alarm in the container
+    alarms.forEach((alarm, index) => {
+        const alarmDiv = document.createElement('div');
+        alarmDiv.innerHTML = `
+            <div class="time">${alarm.hour}:${alarm.minute} ${alarm.ampm}</div>
+            <button class="btn delete-alarm " data-id=${index}></button>
+            <p>Music :${fileName} </p>
+        `;
+        alarmsContainer.appendChild(alarmDiv);
 
-  });
+        const deleteButton = alarmDiv.querySelector(".delete-alarm");
+
+        // Delete alarm button triggered
+        deleteButton.addEventListener("click", () => deleteAlarm(index));
+
+    });
 }
+
+   // Code to delete the item
 function deleteAlarm(index) {
-  console.log('delete '+index.value);
-  alert('Alarm Deleted')
+
+ if (confirm("Are you sure you want to delete this Alarm?")) {
+  alert("Alarm deleted successfully!");
   alarms.splice(index, 1);
   saveAlarms();
+} else {
+  alert("Deletion canceled.");
+}
   displayAlarms();
 }
 
@@ -152,12 +166,14 @@ function deleteAlarm(index) {
 function playSound() {
   
   var time = new Date();
+ time.setMinutes(time.getMinutes() + 1);
   var currentTime=  time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
   alarms.forEach(alarm => {
     var alarmTime=alarm.hour.replace(/^0+/, '')+':'+alarm.minute.replace(/^0+/, '')+' '+alarm.ampm;
+
     if (alarmTime == currentTime) {
-      console.log('alarm triggered');
+        alert('Alarm Triggered : '+alarmTime);
         ringTone.play();
     }
   });
@@ -165,7 +181,4 @@ function playSound() {
 }
 
 // Call the function initially
-playSound();
 
-// Set up the interval to call the function every minute
-const intervalId = setInterval(playSound, 60000);
